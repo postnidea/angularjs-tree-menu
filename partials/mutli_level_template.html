@@ -1,0 +1,43 @@
+<div style="position:relative;">
+
+                <button type="button" ng-click="toggle_multi_level=toggle_multi_level==true?false:true" class="btn btn-default  text-left" style="width:100%;text-align:left;" >
+                  <span aria-hidden="true" class=" pull-right glyphicon glyphicon-menu-hamburger"></span>
+                   {{category_selected}}
+                </button>
+                   
+                        <div class="list-group floating-multi-level" ng-show="toggle_multi_level">
+
+                          <div class="list-group-item floating-multi-level-grey " ng-class="{'floating-multi-level-grey-last-child':$last}" ng-click="changeId(categories.pid)" ng-repeat="categories in first_level">
+                               <span aria-hidden="true" class="pull-right glyphicon glyphicon-minus"></span>
+                              {{categories.category_name}}
+                          </div>
+
+
+                          <div class="list-group-item" ng-class="{'floating-multi-level-grey-first-child':$first}"
+                           ng-click="changeId(sub_categories.id,sub_categories.contain_levels,sub_categories.category_name)"   ng-repeat="sub_categories in second_level" onclick="option_selected(this)">
+                              <span ng-show="sub_categories.contain_levels==1" class=" pull-right glyphicon glyphicon-plus" aria-hidden="true"></span>
+                              {{sub_categories.category_name}}
+                          </div>
+
+                        </div>
+                           
+
+              </div>
+
+            <style type="text/css">
+              .floating-multi-level {
+                box-shadow: 0 4px 15px 0 rgba(130, 130, 130, 0.87);
+                position:absolute ;
+                top:40px;
+                left:0px;width:100%;
+                cursor:pointer;
+                z-index: 100;
+              }
+              .floating-multi-level-grey {
+                background-color:#eee; 
+
+              }   
+              .floating-multi-level-grey-first-child {
+                  box-shadow: 0 1px 2px 0 rgba(50, 50, 50, 0.1) inset;
+              }
+</style>
